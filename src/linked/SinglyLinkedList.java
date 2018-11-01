@@ -159,6 +159,10 @@ class SinglyLinkedList {
             return value;
         }
 
+        public void setNext(Node next) {
+            this.next = next;
+        }
+
         void print() {
             Node temp = this;
             while (temp != null) {
@@ -181,20 +185,29 @@ class SinglyLinkedList {
 //        linkedList.deleteByValue(2);
 //        linkedList.deleteByNode(linkedList.findByValue(1));
 
-        linkedList.insertLast(1);
-        linkedList.insertLast(2);
-        linkedList.insertLast(2);
-        linkedList.insertLast(1);
-        System.out.println("是否为回文函数:\t" + linkedList.isPalindrome());
-        System.out.println("--------------------");
+//        linkedList.insertLast(1);
+//        linkedList.insertLast(2);
+//        linkedList.insertLast(2);
+//        linkedList.insertLast(1);
+//        System.out.println("是否为回文函数:\t" + linkedList.isPalindrome());
+//        System.out.println("--------------------");
+//        Node node = new Node(null, 4);
+//        Node node1 = new Node(node, 3);
+//        Node node2 = new Node(node1, 2);
+//        Node node3 = new Node(node2, 1);
+//        Node node4 = new Node(node3, 0);
+//        node4.print();
+//        System.out.println();
+//        reversed(node4).print();
+
         Node node = new Node(null, 4);
         Node node1 = new Node(node, 3);
         Node node2 = new Node(node1, 2);
         Node node3 = new Node(node2, 1);
         Node node4 = new Node(node3, 0);
-        node4.print();
-        System.out.println();
-        reversed(node4).print();
+        node.setNext(node4);
+        System.out.println("is circle:\t" + isCircle(node4));
+
     }
 
     /**
@@ -232,15 +245,37 @@ class SinglyLinkedList {
 
     private static Node reversed(Node node) {
         if (node.next == null) {
-            return null;
+            return node;
         }
         Node pre = null;
         while (node != null) {
+            // 现将下个节点用 temp 保存下来
             Node temp = node.next;
             node.next = pre;
             pre = node;
             node = temp;
         }
         return pre;
+    }
+
+    /**
+     * 判断是否是循环链表
+     * 快慢节点，如果两者相等必然是循环链表，时间复杂度为 O(n)
+     */
+    private static boolean isCircle(Node node){
+        int count = 0;
+        Node slow = node;
+        Node fast = node;
+        while (slow != null && fast != null && fast.next != null) {
+            count ++;
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                System.out.println("循环了 " + count + "次");
+                return true;
+            }
+        }
+        System.out.println("循环了 " + count + "次");
+        return false;
     }
 }
