@@ -158,6 +158,14 @@ class SinglyLinkedList {
         int getData() {
             return value;
         }
+
+        void print() {
+            Node temp = this;
+            while (temp != null) {
+                System.out.print(temp.value + "");
+                temp = temp.next;
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -178,6 +186,15 @@ class SinglyLinkedList {
         linkedList.insertLast(2);
         linkedList.insertLast(1);
         System.out.println("是否为回文函数:\t" + linkedList.isPalindrome());
+        System.out.println("--------------------");
+        Node node = new Node(null, 4);
+        Node node1 = new Node(node, 3);
+        Node node2 = new Node(node1, 2);
+        Node node3 = new Node(node2, 1);
+        Node node4 = new Node(node3, 0);
+        node4.print();
+        System.out.println();
+        reversed(node4).print();
     }
 
     /**
@@ -211,5 +228,19 @@ class SinglyLinkedList {
             pre = pre.next;
         }
         return true;
+    }
+
+    private static Node reversed(Node node) {
+        if (node.next == null) {
+            return null;
+        }
+        Node pre = null;
+        while (node != null) {
+            Node temp = node.next;
+            node.next = pre;
+            pre = node;
+            node = temp;
+        }
+        return pre;
     }
 }
