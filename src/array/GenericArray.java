@@ -141,7 +141,5 @@ class GenericArray<T> {
         data.remove(data.getCount()-1);
         data.remove(data.getCount()-1);
         data.remove(data.getCount()-1);
-
-
     }
 }
