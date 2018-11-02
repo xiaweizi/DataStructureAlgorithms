@@ -200,14 +200,33 @@ class SinglyLinkedList {
 //        System.out.println();
 //        reversed(node4).print();
 
-        Node node = new Node(null, 4);
-        Node node1 = new Node(node, 3);
-        Node node2 = new Node(node1, 2);
-        Node node3 = new Node(node2, 1);
-        Node node4 = new Node(node3, 0);
-        node.setNext(node4);
-        System.out.println("is circle:\t" + isCircle(node4));
+//        Node node = new Node(null, 4);
+//        Node node1 = new Node(node, 3);
+//        Node node2 = new Node(node1, 2);
+//        Node node3 = new Node(node2, 1);
+//        Node node4 = new Node(node3, 0);
+//        node.setNext(node4);
+//        System.out.println("is circle:\t" + isCircle(node4));
 
+        Node aNode = createNodeA();
+        Node bNode = createNodeB();
+        Node node = mergeNode(aNode, bNode);
+        if (node != null) {
+            node.print();
+        }
+
+    }
+
+    private static Node createNode() {
+        return new Node(new Node(new Node(new Node(new Node(null, 4), 3), 2), 1), 0);
+    }
+
+    private static Node createNodeA() {
+        return new Node(new Node(new Node(null, 5), 3), 1);
+    }
+
+    private static Node createNodeB() {
+        return new Node(new Node(new Node(new Node(new Node(null, 9), 8), 6), 4), 2);
     }
 
     /**
@@ -233,7 +252,7 @@ class SinglyLinkedList {
         if (fast != null) {
             slow = slow.next;
         }
-        while (slow != null &&  pre != null) {
+        while (slow != null && pre != null) {
             if (slow.value != pre.value) {
                 return false;
             }
@@ -262,12 +281,12 @@ class SinglyLinkedList {
      * 判断是否是循环链表
      * 快慢节点，如果两者相等必然是循环链表，时间复杂度为 O(n)
      */
-    private static boolean isCircle(Node node){
+    private static boolean isCircle(Node node) {
         int count = 0;
         Node slow = node;
         Node fast = node;
         while (slow != null && fast != null && fast.next != null) {
-            count ++;
+            count++;
             slow = slow.next;
             fast = fast.next.next;
             if (slow == fast) {
@@ -277,5 +296,37 @@ class SinglyLinkedList {
         }
         System.out.println("循环了 " + count + "次");
         return false;
+    }
+
+    private static Node mergeNode(Node aNode, Node bNode) {
+        Node head = new Node(null, -1);
+        Node tail = head;
+        if (aNode == null) {
+            head = bNode;
+        }
+        if (bNode == null) {
+            head = aNode;
+        }
+
+        while (aNode != null && bNode != null) {
+            if (aNode.value > bNode.value) {
+                tail.next = bNode;
+                bNode = bNode.next;
+            } else {
+                tail.next = aNode;
+                aNode = aNode.next;
+            }
+            tail = tail.next;
+        }
+        if (aNode == null) {
+            tail.next = bNode;
+        }
+        if (bNode == null) {
+            tail.next = aNode;
+        }
+        if (head == null) {
+            return null;
+        }
+        return head.next;
     }
 }
