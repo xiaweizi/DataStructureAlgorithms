@@ -169,6 +169,7 @@ class SinglyLinkedList {
                 System.out.print(temp.value + "");
                 temp = temp.next;
             }
+            System.out.println("\n");
         }
     }
 
@@ -208,13 +209,17 @@ class SinglyLinkedList {
 //        node.setNext(node4);
 //        System.out.println("is circle:\t" + isCircle(node4));
 
-        Node aNode = createNodeA();
-        Node bNode = createNodeB();
-        Node node = mergeNode(aNode, bNode);
-        if (node != null) {
-            node.print();
-        }
+//        Node aNode = createNodeA();
+//        Node bNode = createNodeB();
+//        Node node = mergeNode(aNode, bNode);
+//        if (node != null) {
+//            node.print();
+//        }
 
+        Node node = createNode();
+        node.print();
+        deleteLast(node, 5);
+        node.print();
     }
 
     private static Node createNode() {
@@ -328,5 +333,42 @@ class SinglyLinkedList {
             return null;
         }
         return head.next;
+    }
+
+    /**
+     * 删除倒数 N 个节点
+     *
+     */
+    private static void deleteLast(Node node, int n) {
+        int count = 0;
+        Node head = node;
+        while (head != null) {
+            count ++;
+            head = head.next;
+        }
+        if (n > count) {
+            return;
+        }
+        if (n == count) {
+            if (n == 1) {
+                node.next = null;
+            } else {
+                node.value = node.next.value;
+                node.next = node.next.next;
+            }
+            return;
+        }
+        Node slow = node;
+        Node fast = node;
+        int tempCount = 0;
+        while (slow != null && fast.next != null) {
+            if (tempCount < n) {
+                tempCount ++;
+            } else {
+                slow = slow.next;
+            }
+            fast = fast.next;
+        }
+        slow.next = slow.next.next;
     }
 }
