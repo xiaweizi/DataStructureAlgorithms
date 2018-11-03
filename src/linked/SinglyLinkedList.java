@@ -216,14 +216,18 @@ class SinglyLinkedList {
 //            node.print();
 //        }
 
+//        Node node = createNode();
+//        node.print();
+//        deleteLast(node, 5);
+//        node.print();
+
         Node node = createNode();
         node.print();
-        deleteLast(node, 5);
-        node.print();
+        System.out.println(findMiddleNode(node));
     }
 
     private static Node createNode() {
-        return new Node(new Node(new Node(new Node(new Node(null, 4), 3), 2), 1), 0);
+        return new Node(new Node(new Node(new Node(new Node(new Node(new Node(new Node(null, 7), 6), 5), 4), 3), 2), 1), 0);
     }
 
     private static Node createNodeA() {
@@ -370,5 +374,15 @@ class SinglyLinkedList {
             fast = fast.next;
         }
         slow.next = slow.next.next;
+    }
+
+    private static int findMiddleNode(Node node) {
+        Node fast = node;
+        Node slow = node;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow.value;
     }
 }
