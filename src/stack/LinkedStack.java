@@ -87,6 +87,16 @@ class LinkedStack<T> implements Iterable<T> {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T t : this) {
+            sb.append(t).append(" ");
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new LinkedIterator();
     }
