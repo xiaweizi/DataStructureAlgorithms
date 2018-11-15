@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.Iterator;
+
 import common.Node;
 
 /**
@@ -12,8 +14,9 @@ import common.Node;
  * </pre>
  */
 
-class LinkedStack<T> {
+class LinkedStack<T> implements Iterable<T> {
     Node<T> head = null;
+    int count = 0;
 
     void push(T t) {
         Node<T> node = createNode(t);
@@ -23,6 +26,7 @@ class LinkedStack<T> {
             node.next = head;
             head = node;
         }
+        count++;
         System.out.println("push:\t" + t + "  data:\t" + head.toString());
     }
 
@@ -37,6 +41,24 @@ class LinkedStack<T> {
         } else {
             System.out.println("pop:\t" + t + "  data:\tnull");
         }
+        count--;
+        return t;
+    }
+
+    boolean isEmpty() {
+        return count == 0;
+    }
+
+    int size() {
+        return count;
+    }
+
+    T peek() {
+        if (head == null) {
+            return null;
+        }
+        T t = head.value;
+        System.out.println("peek:\t" + t + "  data:\t" + head.toString());
         return t;
     }
 
@@ -50,9 +72,45 @@ class LinkedStack<T> {
         stack.push(2);
         stack.push(3);
         stack.push(4);
+        System.out.println("size:\t" + stack.size());
+        System.out.println("isEmpty:\t" + stack.isEmpty());
+        for (Integer integer : stack) {
+            System.out.println(integer);
+        }
+        stack.peek();
+        stack.peek();
+        stack.peek();
         stack.pop();
         stack.pop();
         stack.pop();
         stack.pop();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedIterator();
+    }
+
+    class LinkedIterator implements Iterator<T> {
+        Node<T> first = head;
+        int n = count;
+
+        @Override
+        public boolean hasNext() {
+            return n > 0;
+        }
+
+        @Override
+        public T next() {
+            T t = first.value;
+            first = first.next;
+            n--;
+            return t;
+        }
+
+        @Override
+        public void remove() {
+
+        }
     }
 }
