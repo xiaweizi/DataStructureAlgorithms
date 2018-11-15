@@ -192,31 +192,31 @@ class SinglyLinkedList {
 //        linkedList.insertLast(1);
 //        System.out.println("是否为回文函数:\t" + linkedList.isPalindrome());
 //        System.out.println("--------------------");
-//        Node node = new Node(null, 4);
-//        Node node1 = new Node(node, 3);
-//        Node node2 = new Node(node1, 2);
-//        Node node3 = new Node(node2, 1);
-//        Node node4 = new Node(node3, 0);
+//        common.Node node = new common.Node(null, 4);
+//        common.Node node1 = new common.Node(node, 3);
+//        common.Node node2 = new common.Node(node1, 2);
+//        common.Node node3 = new common.Node(node2, 1);
+//        common.Node node4 = new common.Node(node3, 0);
 //        node4.print();
 //        System.out.println();
 //        reversed(node4).print();
 
-//        Node node = new Node(null, 4);
-//        Node node1 = new Node(node, 3);
-//        Node node2 = new Node(node1, 2);
-//        Node node3 = new Node(node2, 1);
-//        Node node4 = new Node(node3, 0);
+//        common.Node node = new common.Node(null, 4);
+//        common.Node node1 = new common.Node(node, 3);
+//        common.Node node2 = new common.Node(node1, 2);
+//        common.Node node3 = new common.Node(node2, 1);
+//        common.Node node4 = new common.Node(node3, 0);
 //        node.setNext(node4);
 //        System.out.println("is circle:\t" + isCircle(node4));
 
-//        Node aNode = createNodeA();
-//        Node bNode = createNodeB();
-//        Node node = mergeNode(aNode, bNode);
+//        common.Node aNode = createNodeA();
+//        common.Node bNode = createNodeB();
+//        common.Node node = mergeNode(aNode, bNode);
 //        if (node != null) {
 //            node.print();
 //        }
 
-//        Node node = createNode();
+//        common.Node node = createNode();
 //        node.print();
 //        deleteLast(node, 5);
 //        node.print();
