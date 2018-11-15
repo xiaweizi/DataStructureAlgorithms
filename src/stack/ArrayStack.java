@@ -1,6 +1,7 @@
 package stack;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * <pre>
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * </pre>
  */
 
-class ArrayStack<T> {
+class ArrayStack<T> implements Iterable<T>{
     private T[] data;
     private int totalCount;
     private int count;
@@ -44,6 +45,23 @@ class ArrayStack<T> {
         return t;
     }
 
+    boolean isEmpty() {
+        return count == 0;
+    }
+
+    int size() {
+        return count;
+    }
+
+    T peek() {
+        if (count == 0) {
+            return null;
+        }
+        T t = data[count - 1];
+        System.out.println("peek: " + t + "  data:\t" + Arrays.toString(data));
+        return t;
+    }
+
     private void resize(int newSize) {
         T[] newData = (T[]) new Object[newSize];
         for (int i = 0; i < count; i++) {
@@ -63,10 +81,39 @@ class ArrayStack<T> {
         data.push(4);
         data.push(5);
         data.push(6);
+        System.out.println("size:\t" + data.size());
+        System.out.println("isEmpty:\t" + data.isEmpty());
+        for (Integer datum : data) {
+            System.out.println(datum);
+        }
+        data.pop();
+        data.pop();
+        data.pop();
+        data.pop();
+        data.peek();
+        data.peek();
+        data.peek();
+    }
 
-        data.pop();
-        data.pop();
-        data.pop();
-        data.pop();
+    @Override
+    public Iterator<T> iterator() {
+        return new ArrayIterator();
+    }
+    class ArrayIterator implements Iterator<T> {
+        int i = count;
+        @Override
+        public boolean hasNext() {
+            return i > 0;
+        }
+
+        @Override
+        public T next() {
+            return data[--i];
+        }
+
+        @Override
+        public void remove() {
+
+        }
     }
 }
