@@ -96,6 +96,11 @@ class LinkedStack<T> implements Iterable<T> {
         return sb.toString();
     }
 
+    void clear() {
+        head = null;
+        count = 0;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new LinkedIterator();
