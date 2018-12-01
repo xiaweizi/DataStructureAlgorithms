@@ -75,8 +75,9 @@ class LinkedStack<T> implements Iterable<T> {
         System.out.println("size:\t" + stack.size());
         System.out.println("isEmpty:\t" + stack.isEmpty());
         for (Integer integer : stack) {
-            System.out.println(integer);
+            System.out.print(integer);
         }
+        System.out.println();
         stack.peek();
         stack.peek();
         stack.peek();

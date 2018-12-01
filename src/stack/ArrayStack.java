@@ -84,8 +84,9 @@ class ArrayStack<T> implements Iterable<T>{
         System.out.println("size:\t" + data.size());
         System.out.println("isEmpty:\t" + data.isEmpty());
         for (Integer datum : data) {
-            System.out.println(datum);
+            System.out.print(datum);
         }
+        System.out.println();
         data.pop();
         data.pop();
         data.pop();

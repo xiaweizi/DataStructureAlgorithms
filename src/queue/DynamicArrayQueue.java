@@ -57,7 +57,7 @@ class DynamicArrayQueue<T> {
     }
 
     public static void main(String[] args) {
-        DynamicArrayQueue<String> queue = new DynamicArrayQueue<String>(6);
+        DynamicArrayQueue<String> queue = new DynamicArrayQueue<String>(4);
         queue.enqueue("1");
         queue.enqueue("2");
         queue.enqueue("3");
@@ -66,7 +66,5 @@ class DynamicArrayQueue<T> {
         queue.dequeue();
         queue.enqueue("5");
         queue.enqueue("6");
-        queue.enqueue("7");
-        queue.enqueue("8");
     }
 }
