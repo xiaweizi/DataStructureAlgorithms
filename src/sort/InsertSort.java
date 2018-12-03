@@ -38,5 +38,13 @@ class InsertSort {
         InsertSort insertSort = new InsertSort();
         insertSort.insertSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + insertSort.count);
+
+        long lastTime = System.currentTimeMillis();
+        int[][] value = ArrayCommon.createRandomData(200, 10000);
+        for (int i = 0; i < 200; i++) {
+            int[] temp = value[i];
+            insertSort.insertSort(temp, temp.length);
+        }
+        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
     }
 }

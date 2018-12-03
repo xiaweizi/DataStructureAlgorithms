@@ -38,5 +38,13 @@ class BubbleSort {
         int[] data = new int[]{1, 2, 3, 5, 6, 4};
         bubbleSort.bubbleSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + bubbleSort.count);
+
+        int[][] value = ArrayCommon.createRandomData(200, 10000);
+        long lastTime = System.currentTimeMillis();
+        for (int i = 0; i < 200; i++) {
+            int[] temp = value[i];
+            bubbleSort.bubbleSort(temp, temp.length);
+        }
+        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
     }
 }
