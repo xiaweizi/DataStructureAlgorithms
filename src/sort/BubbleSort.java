@@ -35,7 +35,7 @@ class BubbleSort {
 
     public static void main(String[] args) {
         BubbleSort bubbleSort = new BubbleSort();
-        int[] data = new int[]{5, 1, 2, 3, 4, 6};
+        int[] data = new int[]{1, 2, 3, 5, 6, 4};
         bubbleSort.bubbleSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + bubbleSort.count);
     }

@@ -14,6 +14,7 @@ import java.util.Arrays;
 
 class InsertSort {
     private int count = 0;
+
     private void insertSort(int[] data, int n) {
         if (n <= 1) return;
         for (int i = 1; i < n; i++) {
@@ -33,7 +34,7 @@ class InsertSort {
 
 
     public static void main(String[] args) {
-        int[] data = new int[]{5, 1, 2, 3, 6, 4};
+        int[] data = new int[]{1, 2, 3, 5, 6, 4};
         InsertSort insertSort = new InsertSort();
         insertSort.insertSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + insertSort.count);
