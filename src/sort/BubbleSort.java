@@ -39,7 +39,7 @@ class BubbleSort {
         bubbleSort.bubbleSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + bubbleSort.count);
 
-        int[][] value = ArrayCommon.createRandomData(200, 10000);
+        int[][] value = ArrayCommon.createRandomData();
         long lastTime = System.currentTimeMillis();
         for (int i = 0; i < 200; i++) {
             int[] temp = value[i];

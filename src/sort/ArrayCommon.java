@@ -24,4 +24,8 @@ public class ArrayCommon {
         }
         return data;
     }
+
+    public static int[][] createRandomData() {
+        return createRandomData(200, 4000);
+    }
 }
