@@ -53,13 +53,36 @@ class QuickSort {
         QuickSort quickSort = new QuickSort();
         quickSort.quickSort(data, data.length);
         System.out.println(Arrays.toString(data));
+        System.out.println(quickSort.findMaxPosition(data, 7, 0, data.length - 1));
+//
+//        int[][] value = ArrayCommon.createRandomData();
+//        long lastTime = System.currentTimeMillis();
+//        for (int i = 0; i < 200; i++) {
+//            int[] temp = value[i];
+//            quickSort.quickSort(temp, temp.length);
+//        }
+//        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
+    }
 
-        int[][] value = ArrayCommon.createRandomData();
-        long lastTime = System.currentTimeMillis();
-        for (int i = 0; i < 200; i++) {
-            int[] temp = value[i];
-            quickSort.quickSort(temp, temp.length);
+    private int findMaxPosition(int[] data, int index, int start, int end) {
+        System.out.println("--");
+        if (index >= data.length) return -1;
+        int partition = data[end];
+        int i = start, j = start;
+        while (j < end) {
+            if (data[j] < partition) {
+                swap(data, i, j);
+                i++;
+            }
+            j++;
         }
-        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
+        swap(data, i, j);
+        if (index == i) {
+            return data[i];
+        } else if (index > i) {
+            return findMaxPosition(data, index, i + 1, end);
+        } else {
+            return findMaxPosition(data, index, start, i - 1);
+        }
     }
 }
