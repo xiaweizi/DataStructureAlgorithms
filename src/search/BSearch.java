@@ -36,7 +36,7 @@ class BSearch {
         System.out.println(bSearch.count);
         System.out.println("---------");
         int[] data1 = new int[]{1, 1, 3, 4, 8, 8, 8};
-        int index = bSearch.bsearch1(data1, data1.length, 8);
+        int index = bSearch.bsearch1(data1, data1.length, 7);
         System.out.println(index);
         System.out.println(data1[index]);
         System.out.println("---------");
@@ -93,7 +93,7 @@ class BSearch {
             if (data[middle] <  value) {
                 low = middle + 1;
             } else if (data[middle] > value) {
-                high = middle + 1;
+                high = middle - 1;
             } else {
                 if (middle == n - 1 || data[middle + 1] != value) return middle;
                 low = middle + 1;
