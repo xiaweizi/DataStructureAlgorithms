@@ -32,18 +32,35 @@ class SelectSort {
         }
     }
 
+    private void selectSortReverse(int[] data, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            int maxIndex = i;
+            int j = i + 1;
+            for (; j < n; j++) {
+                if (data[j] > data[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+            if (i != maxIndex) {
+                BubbleSort.swap(data, i, maxIndex);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[] data = new int[]{5, 1, 2, 3, 6, 4};
         SelectSort selectSort = new SelectSort();
         selectSort.selectSort(data, data.length);
         System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + selectSort.count);
+        selectSort.selectSortReverse(data, data.length);
+        System.out.println("result:\t" + Arrays.toString(data) + "  count:\t" + selectSort.count);
 
-        int[][] value = ArrayCommon.createRandomData();
-        long lastTime = System.currentTimeMillis();
-        for (int i = 0; i < 200; i++) {
-            int[] temp = value[i];
-            selectSort.selectSort(temp, temp.length);
-        }
-        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
+//        int[][] value = ArrayCommon.createRandomData();
+//        long lastTime = System.currentTimeMillis();
+//        for (int i = 0; i < 200; i++) {
+//            int[] temp = value[i];
+//            selectSort.selectSort(temp, temp.length);
+//        }
+//        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
     }
 }
