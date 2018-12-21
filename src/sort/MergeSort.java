@@ -29,8 +29,8 @@ class MergeSort {
     private static void mergeData(int[] data, int start, int middle, int end) {
         int i = start;
         int j = middle + 1;
-        int k = 0;
         int[] temp = new int[end - start + 1];
+        int k = 0;
         while (i <= middle && j <= end) {
             if (data[i] < data[j]) {
                 temp[k++] = data[i++];
@@ -80,18 +80,58 @@ class MergeSort {
 //        System.out.println();
     }
 
+    private void mergeSortReverse(int[] data, int n) {
+        mergeSortInnerReverse(data, 0, n - 1);
+    }
+
+    private void mergeSortInnerReverse(int[] data, int start, int end) {
+        if (start >= end) return;
+        int middle = (start + end) /  2;
+        mergeSortInnerReverse(data, start, middle);
+        mergeSortInnerReverse(data, middle + 1, end);
+        mergeDataReverse(data, start, middle, end);
+    }
+
+    private void mergeDataReverse(int[] data, int start, int middle, int end) {
+        int i = start;
+        int j = middle + 1;
+        int[] temp = new int[end - start + 1];
+        int k = 0;
+        while (i <= middle && j <= end) {
+            if (data[i] > data[j]) {
+                temp[k++] = data[i++];
+            } else {
+                temp[k++] = data[j++];
+            }
+        }
+        int start1 = i;
+        int end1 = middle;
+        if (j <= end) {
+            start1 = j;
+            end1 = end;
+        }
+        while (start1 <= end1) {
+            temp[k++] = data[start1++];
+        }
+        for (int l = 0; l <= end - start; l++) {
+            data[start+l] = temp[l];
+        }
+    }
+
     public static void main(String[] args) {
         int[] data = new int[]{8, 7, 6, 5, 4, 3, 2, 1};
         MergeSort mergeSort = new MergeSort();
         mergeSort.mergeSort(data, data.length);
         System.out.println(Arrays.toString(data));
+        mergeSort.mergeSortReverse(data, data.length);
+        System.out.println(Arrays.toString(data));
 
-        long lastTime = System.currentTimeMillis();
-        int[][] value = ArrayCommon.createRandomData();
-        for (int i = 0; i < 200; i++) {
-            int[] temp = value[i];
-            mergeSort.mergeSort(temp, temp.length);
-        }
-        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
+//        long lastTime = System.currentTimeMillis();
+//        int[][] value = ArrayCommon.createRandomData();
+//        for (int i = 0; i < 200; i++) {
+//            int[] temp = value[i];
+//            mergeSort.mergeSort(temp, temp.length);
+//        }
+//        System.out.println("totalTime:\t" + (System.currentTimeMillis() - lastTime));
     }
 }
