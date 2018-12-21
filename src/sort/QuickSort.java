@@ -81,9 +81,38 @@ class QuickSort {
     }
 
     private void swap(int[] data, int a, int b) {
+        if (a == b) return;
         int temp = data[a];
         data[a] = data[b];
         data[b] = temp;
+    }
+
+    private void quickSortReverse(int[] data, int n) {
+        quickSortInnerReverse(data, 0, n - 1);
+    }
+
+    private void quickSortInnerReverse(int[] data, int start, int end) {
+        if (start >= end) return;
+        int middle = partitionReverse(data, start, end);
+        quickSortInnerReverse(data, start, middle - 1);
+        quickSortInnerReverse(data, middle + 1, end);
+    }
+
+    private int partitionReverse(int[] data, int start, int end) {
+        int partition = data[end];
+        int i = start;
+        int j = start;
+        for (; j < end; j++) {
+            if (data[j] > partition) {
+                swap(data, i, j);
+                i++;
+            }
+        }
+        swap(data, i, j);
+        System.out.println("start=" + start + " end=" + end + " middle=" + i);
+        System.out.println("source: " + Arrays.toString(data));
+        System.out.println();
+        return i;
     }
 
     public static void main(String[] args) {
@@ -93,6 +122,8 @@ class QuickSort {
         System.out.println(Arrays.toString(data));
         System.out.println(quickSort.count);
         System.out.println(quickSort.count1);
+        quickSort.quickSortReverse(data, data.length);
+        System.out.println(Arrays.toString(data));
 //        System.out.println(quickSort.findMaxPosition(data, 7, 0, data.length - 1));
 //
 //        int[][] value = ArrayCommon.createRandomData();
